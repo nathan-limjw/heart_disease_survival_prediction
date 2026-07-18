@@ -1,0 +1,36 @@
+file_path: "./data/heart_disease_data.csv"
+
+target_column: "Survive"
+id_column: "ID"
+
+numeric_features:
+  boxcox_features: ["Creatinine", "Sodium"]
+  sqrt_features: ["Platelets", "Weight"]
+  plain_features: ["Age"]
+
+ordinal_features:
+  "Ejection Fraction": ["Low", "Normal", "High"]
+
+drop_features:
+  - "Favorite color"
+  - "Gender"
+  - "Smoke"
+  - "Diabetes"
+  - "Creatine phosphokinase"
+  - "Height"
+  - "Hemoglobin"
+  - "Blood Pressure"
+
+val_test_size: 0.36   # test = 20%, remaining 80% split again for val
+val_size: 0.2          # 20% of the 80% -> ~16% overall
+
+cv_splits: 5
+random_state: 42
+scoring: "average_precision"
+
+xgb_param_grid:
+  n_estimators: [100, 200, 300]
+  max_depth: [3, 5, 7]
+  learning_rate: [0.01, 0.05, 0.1, 0.2]
+  subsample: [0.7, 0.85, 1.0]
+xgb_n_iter: 15 
